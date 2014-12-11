@@ -1,0 +1,14 @@
+[user]
+	name = Keith T. Star
+	email = keith@pnnl.gov
+[color]
+	ui = true
+[credential]
+	helper = osxkeychain
+[core]
+	editor = atom -n -w
+[push]
+	default = simple
+[status]
+	branch = true
+	showUntrackedFiles = no

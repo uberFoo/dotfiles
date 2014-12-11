@@ -4,7 +4,7 @@
 # Licensed under the MIT license.
 # http://benalman.com/about/license/
 #
-# Adapted for myself -- Keith .T. Star
+# Adapted for myself -- Keith T. Star
 #
 # Example:
 # [master:!?][cowboy@CowBook:~/.dotfiles]
@@ -142,4 +142,4 @@ function prompt_command() {
   PS1="$PS1 \[\e[0;31m\]道\[\e[m\] > "
 }
 
-PROMPT_COMMAND="prompt_command"
+PROMPT_COMMAND="prompt_command; $PROMPT_COMMAND"
