@@ -32,11 +32,17 @@
 #
 # Pain in the ass way to get redo to work.
 'body':
-  'shift-cmd-z': 'core:redo'
   'cmd-y': 'unset!'
+  'shift-cmd-z': 'core:redo'
 
 #
 # Switch between left and right panes
 '.platform-darwin':
   'cmd-k cmd-b': 'window:focus-pane-on-left'
   'cmd-k cmd-f': 'window:focus-pane-on-right'
+
+#
+# Let's try autocomplete
+'.editor':
+  'ctrl-space': 'unset!'
+  'alt-space': 'autocomplete:toggle'

@@ -6,7 +6,6 @@
     'tabLength': 4
     'showIndentGuide': true
     'softWrapAtPreferredLineLength': true
-    'invisibles': {}
     'fontFamily': 'SourceCodePro-Light'
     'showInvisibles': true
     'autoIndentOnPaste': false
@@ -21,3 +20,13 @@
       'seti-ui'
       'seti-syntax'
     ]
+    'disabledPackages': [
+      'autocomplete-plus'
+    ]
+  'incremental-search':
+    'keepOptionsAfterSearch': false
+  'github-issues':
+    'username': 'uberFoo'
+  'save-session':
+    'dataSaveFolder': '/Users/uberfoo/Documents/projects/dotfiles/atom/packages/save-session/projects'
+    'project': '/Users/uberfoo/projects/Sarzak/svm/javascript/sarzak-vm'
