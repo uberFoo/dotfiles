@@ -20,31 +20,69 @@
 
 }
 
-.editor .isearch-result .region {
-    // I can't see the damn box.
-    border: 1px solid rgb(180,156,82);
-}
+@gray-color: rgb(91, 112, 121);
+@gray-color-alpha: rgba(91, 112, 121, 0.4);
+@dim-yellow: rgb(121,104,55);
+@bright-yellow: rgb(241,208,109);
+@gutter-background: rgb(14,17,18);
+@gutter-background-highlight: rgb(6,7,8);
 
-.editor .isearch-current .region {
-    // I can't see the damn box.
-    border: 1.5px solid rgb(241,208,109);
-}
+atom-text-editor::shadow, .editor {
+    .isearch-result .region {
+        // I can't see the damn box.
+        border: 1px solid @dim-yellow;
+    }
 
-// Slightly changed from defaults to amke the comments a bit brighter.
-.comment, .comment-punc {
-    color: rgb(91,112,121);
-}
+    .isearch-current .region {
+        // I can't see the damn box.
+        border: 1px solid @bright-yellow;
+    }
 
-// Brighten up the line numbers a bit.
-.editor .gutter .line-number {
-    color: rgb(91,112,121);
-}
+    // Slightly changed from defaults to make the comments a bit brighter.
+    .comment {
+        color: @gray-color;
+        background-color: rgb(0, 0, 0);
+    }
 
-// Brighten up the invisibles...
-.editor .indent-guide, .invisible-character {
-    color: rgba(91,112,121, 0.4);
-}
-// ... and the "wrap-guide" marker.
-.editor .wrap-guide {
-    background-color: rgba(91,112,121, 0.4);
+    // Brighten up the line numbers a bit.
+    .gutter {
+        .line-number {
+
+            // Gutter background
+            color: @gray-color;
+            background-color: @gutter-background;
+
+            // Selected Block
+            &.cursor-line {
+                color: @bright-yellow;
+                background-color: @gutter-background-highlight;
+                font-weight: 100;
+            }
+
+            // Current active line
+            &.cursor-line-no-selection {
+                color: @bright-yellow;
+                background-color: @gutter-background-highlight !important;
+            }
+        }
+
+        .line-number:hover {
+            color: @bright-yellow;
+            background-color: @gutter-background !important;
+        }
+    }
+
+    // Brighten up the invisibles...
+    .indent-guide, .invisible-character {
+    color: @gray-color-alpha;
+    }
+
+    // ... and the "wrap-guide" marker.
+    .wrap-guide {
+        background-color: @gray-color-alpha;
+    }
+
+    .selection .region {
+        background-color: @gray-color-alpha;
+    }
 }
