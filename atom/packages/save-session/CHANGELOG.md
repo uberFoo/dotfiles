@@ -1,3 +1,40 @@
+## 0.12.5
+* Added some of JohnMurga's changes
+* New windows work better now, but still aren't perfect
+
+## 0.12.4
+* Removed some debugging messages.
+
+## 0.12.3
+* Really fixed the issue from 0.12.2.
+* Removed the backwards compatibility for now.
+
+## 0.12.2
+* Fixed an issue with checking for the path incorrectly.
+
+## 0.12.1
+* Fixed an issue with saving/opening projects with Atom's new project setup
+thanks to smiffy6969.
+
+## 0.12.0
+* Now saves fullscreen thanks to quarterto.
+
+## 0.11.5
+* Fixed a deprecation issue.
+
+## 0.11.4
+* Something went wrong so this version was skipped.
+
+## 0.11.3
+* Fixed an thrown error in Atom 0.166.0
+
+## 0.11.2
+* Fixed an `Undefined is not a function` issue with closing the first undefined
+buffer.
+
+## 0.11.1
+* Fixed an issue with opening files without a cursor position
+
 ## 0.11.0 Added a delay option
 * An option was added for an additional delay for saving files after typing.
 

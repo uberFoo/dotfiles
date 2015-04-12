@@ -58,6 +58,9 @@ module.exports =
   windowHeight: (val, force) ->
     @config 'windowHeight', val, force
 
+  fullScreen: (val, force) ->
+    @config 'fullScreen', val, force
+
   treeSize: (val, force) ->
     @config 'treeSize', val, force
 
@@ -75,8 +78,13 @@ module.exports =
 
   saveFile: ->
     folder = @saveFolder()
-    if @restoreOpenFilesPerProject() and atom.project.path?
-      path = @transformProjectPath(atom.project.path)
+
+    if not folder?
+      @saveFolderDefault()
+      folder = @saveFolder()
+
+    if @restoreOpenFilesPerProject() and atom.project.rootDirectories[0]?.path?
+      path = @transformProjectPath(atom.project.rootDirectories[0].path)
       return folder + @pathSeparator() + path + @pathSeparator() + 'project.json'
     else
       return folder + @pathSeparator() + 'undefined' + @pathSeparator() + 'project.json'

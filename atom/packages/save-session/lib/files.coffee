@@ -16,6 +16,7 @@ module.exports =
     @addListeners()
 
   save: ->
+    localStorage.sessionRestore = false
     buffers = []
     activePath = @getActivePath()
     atom.workspace.eachEditor (editor) ->
@@ -41,8 +42,12 @@ module.exports =
       @open(buffer)
 
   open: (buffer) ->
-    row = buffer.cursor.row
-    col = buffer.cursor.column
+    if buffer.cursor?
+      row = buffer.cursor.row
+      col = buffer.cursor.column
+    else
+      row = 0
+      col = 0
 
     if atom.workspace.saveSessionOpenFunc?
       promise = atom.workspace.saveSessionOpenFunc(buffer.path, initialLine: row, initialColumn: col)
