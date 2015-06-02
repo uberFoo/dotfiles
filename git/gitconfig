@@ -1,12 +1,12 @@
 [user]
 	name = Keith T. Star
-	email = keith@uberfoo.com
+	email = keith@pnnl.gov
 [color]
 	ui = true
 [credential]
 	helper = osxkeychain
 [core]
-	editor = atom -n -w
+	editor = vim
 	autocrlf = input
 [push]
 	default = simple
