@@ -1,3 +1,5 @@
+set nocompatible
+
 inoremap jk <ESC>
 let mapleader = ","
 
@@ -21,8 +23,10 @@ nnoremap <C-L> :nohl<CR><C-L>
 "Turn on our package manager thing.
 execute pathogen#infect()
 
+"The important stuff: how it looks...
 set background=dark
 colorscheme abbott
+set transparency=20
 
 "Tabs for indent, spaces for alignment.
 set noexpandtab
@@ -31,5 +35,25 @@ set shiftwidth=4
 set tabstop=4
 set cindent
 set cinoptions=(0,u0,U0
+"Don't let anyone mess with my indent settings
+filetype plugin indent off
 
+"Spell checking
+set spell spelllang=en_us
+
+"Ctrl-P
 let g:ctrlp_working_path_mode='ra'
+
+"Buffergator and python fight over this one...
+nnoremap <silent> <Leader>bg :BuffergatorOpen<CR>
+nnoremap <silent> <Leader>Bg :BuffergatorClose<CR>
+
+"Python Mode
+let g:pymode=1
+let g:pymode_indent=0
+let g:pymode_folding=0
+
+"Show tabs and trailing spaces specially.
+set list
+set listchars=tab:·\ ,trail:␣
+
