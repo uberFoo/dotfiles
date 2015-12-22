@@ -1,0 +1,113 @@
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+(use-package magit)
+(use-package find-file-in-project)
+(use-package idle-highlight-mode)
+(use-package smex)
+(use-package js2-mode)
+(setq-default js2-basic-offset 2)
+(setq-default js2-bounce-indent-p t)
+(use-package web-beautify)
+
+;; File modes
+(add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))
+
+;; Make Command Meta, and Option Super
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier 'super)
+
+;; Fix C-h
+(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "M-?") 'mark-paragraph)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)
+
+
+;; Frame appearance 
+(setq default-frame-alist
+      '(
+	(width . 132)     ; characters
+	(height . 60)     ; lines
+	(alpha . (85 60)) ; transparency
+	))
+
+;; Font magic
+(when (member "Source Code Pro Light" (font-family-list))
+  (add-to-list 'default-frame-alist  '(font . "Source Code Pro Light-12")))
+
+;; Fix the mouse scrolling
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))  ;; one line at a time
+(setq mouse-wheel-progressive-speed nil)  ;; no acceleration
+(setq mouse-wheel-follow-mouse 't)  ;; scroll the window under the mouse cursor
+(setq scroll-step 1)  ;; don't C-l when scrolling off the screen
+
+;; Turn off the damn bell when scrolling beyond extents
+(defun my-bell-function ()
+  (unless (memq this-command
+		'(isearch-abort abort-recursive-edit exit-minibuffer
+				keyboard-quit mwheel-scroll down up next-line previous-line
+				backward-char forward-char))
+    (ding)))
+(setq ring-bell-function 'my-bell-function)
+
+;; This looks promising
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+(setq ffip-prefer-ido-mode t)
+
+
+;; Stuff from here: https://github.com/technomancy/better-defaults/blob/master/better-defaults.el
+(show-paren-mode 1)
+(tool-bar-mode 0)
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+;; Programming hooks
+(defun my-coding-hook ()
+  (make-local-variable 'column-number-mode)
+  (column-number-mode t)
+  (linum-mode t)
+;  (if window-system (hl-line-mode t))
+  (idle-highlight-mode t))
+
+(add-hook 'emacs-lisp-mode-hook 'my-coding-hook)
+(add-hook 'js2-mode-hook 'my-coding-hook)
+(add-hook 'python-mode-hook 'my-coding-hook)
+
+;; Smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+;; Magical left/right window switching
+(bind-keys*
+ ((kbd "M-{") . windmove-left)
+ ((kbd "M-}") . windmove-right))
+
+;; Color stuff
+(load-theme 'raspopovic t t)
+(enable-theme 'raspopovic)
+
+;; TRAMP mode
+(setq tramp-default-method "ssh")
+
+;; 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
