@@ -14,7 +14,14 @@
 (use-package js2-mode)
 (setq-default js2-basic-offset 2)
 (setq-default js2-bounce-indent-p t)
+
 (use-package web-beautify)
+(use-package smart-tabs-mode)
+(smart-tabs-insinuate 'c 'javascript 'python)
+(setq-default tab-width 4)
+
+(use-package alect-themes)
+
 
 ;; File modes
 (add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))
@@ -92,8 +99,9 @@
  ((kbd "M-}") . windmove-right))
 
 ;; Color stuff
-(load-theme 'raspopovic t t)
-(enable-theme 'raspopovic)
+;(load-theme 'raspopovic t t)
+;(enable-theme 'raspopovic)
+(load-theme 'alect-light t)
 
 ;; TRAMP mode
 (setq tramp-default-method "ssh")
