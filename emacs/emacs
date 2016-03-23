@@ -8,13 +8,22 @@
 (setq use-package-always-ensure t)
 
 (use-package magit)
+(global-set-key (kbd "C-x g") 'magit-status)
+
 (use-package find-file-in-project)
 (use-package idle-highlight-mode)
+(use-package multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
 (use-package smex)
+
 (use-package js2-mode)
 (setq-default js2-basic-offset 2)
 (setq-default js2-bounce-indent-p t)
+
 (use-package web-beautify)
+
+(use-package lua-mode)
 
 ;; File modes
 (add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))
@@ -29,13 +38,16 @@
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
 
+;; Fingers want M-z to undo...
+(global-set-key (kbd "M-z") 'undo)
+
 
 ;; Frame appearance 
 (setq default-frame-alist
       '(
 	(width . 132)     ; characters
 	(height . 60)     ; lines
-	(alpha . (85 60)) ; transparency
+	(alpha . (85 77	)) ; transparency
 	))
 
 ;; Font magic
