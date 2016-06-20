@@ -23,11 +23,8 @@
 
 (use-package web-beautify)
 (use-package smart-tabs-mode)
-(smart-tabs-insinuate 'c 'javascript 'python)
+(smart-tabs-insinuate 'c 'javascript) ; 'python)
 (setq-default tab-width 4)
-
-(use-package alect-themes)
-
 
 (use-package lua-mode)
 
@@ -53,18 +50,22 @@
       '(
 	(width . 132)     ; characters
 	(height . 60)     ; lines
-	(alpha . (85 77	)) ; transparency
+	(alpha . (93 77)) ; transparency
 	))
 
 ;; Font magic
 (when (member "Source Code Pro Light" (font-family-list))
   (add-to-list 'default-frame-alist  '(font . "Source Code Pro Light-12")))
 
-;; Fix the mouse scrolling
+;; Fix the mouse scrolling behavior
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))  ;; one line at a time
 (setq mouse-wheel-progressive-speed nil)  ;; no acceleration
 (setq mouse-wheel-follow-mouse 't)  ;; scroll the window under the mouse cursor
 (setq scroll-step 1)  ;; don't C-l when scrolling off the screen
+
+;; Define some mouse-wheel events to avoid the damn bell
+(global-set-key [wheel-right] 'ignore)
+(global-set-key [wheel-left] 'ignore)
 
 ;; Turn off the damn bell when scrolling beyond extents
 (defun my-bell-function ()
@@ -95,9 +96,15 @@
 ;  (if window-system (hl-line-mode t))
   (idle-highlight-mode t))
 
+(add-hook 'c-mode-hook 'my-coding-hook)
 (add-hook 'emacs-lisp-mode-hook 'my-coding-hook)
 (add-hook 'js2-mode-hook 'my-coding-hook)
 (add-hook 'python-mode-hook 'my-coding-hook)
+(add-hook 'python-mode-hook
+		  (lambda ()
+			(setq indent-tabs-mode nil)
+			(setq tab-width 4)
+			(setq python-indent 4)))
 
 ;; Smex
 (global-set-key (kbd "M-x") 'smex)
@@ -112,10 +119,20 @@
 ;; Color stuff
 ;(load-theme 'raspopovic t t)
 ;(enable-theme 'raspopovic)
-(load-theme 'alect-light t)
+;(use-package alect-themes)
+;(load-theme 'alect-light t)
+
+(use-package color-theme-modern)
+(load-theme 'jedit-grey t t)
+(enable-theme 'jedit-grey)
+
 
 ;; TRAMP mode
 (setq tramp-default-method "ssh")
+
+;; Annoying things go here...
+(setq vc-follow-symlinks nil) ; Just edit the .emacs file (this also drops me in Emacs-Lisp mode)
+(setq dired-use-ls-dired nil) ; Get rid of dired warning/error.
 
 ;; 
 (custom-set-variables
